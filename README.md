@@ -1,4 +1,4 @@
-![Build Status](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fparsitects%2Ficsnpp-c1222%2Fcommits%2Fmain%2Fstatus&query=state&label=build)
+![Last Build](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fparsitects%2Ficsnpp-c1222%2Fcommits%2Fmain%2Fstatus&query=statuses[0].updated_at&label=last%20build)
 
 # ICSNPP-C12.22
 
