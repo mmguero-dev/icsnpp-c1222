@@ -1,4 +1,4 @@
-[![Build Status](https://parsitects-jenkins.inl.gov/job/Parsitects/job/c1222/job/main/lastBuild/badge/icon)](https://parsitects-jenkins.inl.gov/job/Parsitects/job/c1222/job/main/)
+![Build Status](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fparsitects%2Ficsnpp-c1222%2Fcommits%2Fmain%2Fstatus&query=state&label=build)
 
 # ICSNPP-C12.22
 
