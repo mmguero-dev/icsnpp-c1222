@@ -1,3 +1,5 @@
+[![Build Status](https://parsitects-jenkins.inl.gov/job/Parsitects/job/c1222/job/main/lastBuild/badge/icon)](https://parsitects-jenkins.inl.gov/job/Parsitects/job/c1222/job/main/)
+
 # ICSNPP-C12.22
 
 Industrial Control Systems Network Protocol Parsers (ICSNPP) - ANSI C12.22 traffic over TCP and UDP.
