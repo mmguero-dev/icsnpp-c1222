@@ -77,12 +77,38 @@ export {
     const c1222_ports_tcp: set[port] = { 1153/tcp } &redef;
     const c1222_ports_udp: set[port] = { 1153/udp } &redef;
 }
+
+global c1222_ports_str: string = getenv("ZEEK_C1222_PORTS");
+
 redef likely_server_ports += { c1222_ports_tcp, c1222_ports_udp };
 
 event zeek_init() &priority=5 {
     Analyzer::register_for_ports(Analyzer::ANALYZER_C1222_TCP, c1222_ports_tcp);
     Analyzer::register_for_ports(Analyzer::ANALYZER_C1222_UDP, c1222_ports_udp);
 
+# Register additional ports from ZEEK_C1222_PORTS.
+    if (c1222_ports_str != "") {
+        local custom_ports = split_string(c1222_ports_str, /,/);
+        local custom_ports_tcp: set[port] = {};
+        local custom_ports_udp: set[port] = {};
+        for (port_idx in custom_ports) {
+            local custom_port = to_port(custom_ports[port_idx]);
+            local custom_prot = get_port_transport_proto(custom_port);
+            if (custom_prot == tcp) {
+                add custom_ports_tcp[custom_port];
+            }
+            else if (custom_prot == udp) {
+                add custom_ports_udp[custom_port];
+            }
+        }
+        if (|custom_ports_tcp| > 0) {
+            Analyzer::register_for_ports(Analyzer::ANALYZER_C1222_TCP, custom_ports_tcp);
+        }
+        if (|custom_ports_udp| > 0) {
+            Analyzer::register_for_ports(Analyzer::ANALYZER_C1222_UDP, custom_ports_udp);
+        }
+    }
+    
 	Log::create_stream(C1222::LOG_SUMMARY_LOG, 
 						[$columns=summary_log, 
 						$ev=log_c1222, 
